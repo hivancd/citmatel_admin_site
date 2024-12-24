@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from .models import *
 
 def front(request):
-    return HttpResponse('This is the view.')
+    context={}
+    return render(request,'proyects/example.html',context)
