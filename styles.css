@@ -1,0 +1,53 @@
+.fila-terminada {
+    /*text-align: center; Centra el texto */
+    color: green; /* Cambia el color del texto */
+}
+
+.texto-pequeño {
+    font-size: 14px; /* Ajusta el tamaño de fuente según sea necesario */
+}
+.footer{ 
+    /*position: fixed;*/
+    text-align: center;    
+    bottom: 0px; 
+    width: 100%;
+}  
+
+h2, h4 {
+font-weight: bold;
+}
+
+.shake-top {
+animation: shake-top 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+}
+
+@keyframes shake-top {
+    0%,
+    100% {
+      transform: rotate(0deg);
+      transform-origin: 50% 0;
+    }
+    10% {
+      transform: rotate(2deg);
+    }
+    20%,
+    40%,
+    60% {
+      transform: rotate(-4deg);
+    }
+    30%,
+    50%,
+    70% {
+      transform: rotate(4deg);
+    }
+    80% {
+      transform: rotate(-2deg);
+    }
+    90% {
+      transform: rotate(2deg);
+    }
+}
+
+#myTabContent{
+  margin-top: 30px;
+}
