@@ -56,13 +56,13 @@
                     <thead class="table-dark">
                       <tr>
                         <th>Mes</th>
-                        <th>Plan</th>		/*Para los datos que se muestran cuando se da clic en el botón modal*/
-                        <th>Acumulado</th>  /*el acumulado del mes es igual a la suma del acumulado del mes anterior + el real del mes*/
-                      </tr>					/*en el caso de enero, el acumulado del mes anterior es cero*/	
-                    </thead>				/*en el año 2023 no está la columna Real, si se agrega, hay que poner los datos correctos*/
-                    <tbody>					/*el modal del 2024 tiene el diseño que necesitamos*/
-                      <tr>					/*tener en cuenta que al final, en el pie del modal, debe estar el total del plan del año y el % de cumplimiento*/
-                        <td>Enero</td>		/*el % de cumplimiento se calcula por la típica regla de 3*/
+                        <th>Plan</th>		    <!--Para los datos que se muestran cuando se da clic en el botón modal-->
+                        <th>Acumulado</th>  <!--el acumulado del mes es igual a la suma del acumulado del mes anterior + el real del mes-->
+                      </tr>					        <!--en el caso de enero, el acumulado del mes anterior es cero-->	
+                    </thead>				        <!--en el año 2023 no está la columna Real, si se agrega, hay que poner los datos correctos-->
+                    <tbody>					        <!--el modal del 2024 tiene el diseño que necesitamos-->
+                      <tr>					        <!--tener en cuenta que al final, en el pie del modal, debe estar el total del plan del año y el % de cumplimiento-->
+                        <td>Enero</td>		  <!--el % de cumplimiento se calcula por la típica regla de 3-->
                         <td>$4,000.00</td>
                         <td>$4,000.00</td>
                       </tr>
@@ -145,10 +145,10 @@
           <thead class="table-light">
             <tr>
               <th>No.</th>
-          <td></td>							/*datos de los proyectos y servicios*/
-              <th>Proyecto/Cliente</th>  	/*en este caso el número de columnas también difiere entre el 23 y el 2024*/
-              <th>Código</th>				/*el diseño que se debe quedar es el del 24*/
-              <th>Tipo</th>					/*los datos que están acá se deben adicionar después*/	
+          <td></td>							          <!--datos de los proyectos y servicios-->
+              <th>Proyecto/Cliente</th>  	<!--en este caso el número de columnas también difiere entre el 23 y el 2024-->
+              <th>Código</th>				      <!--el diseño que se debe quedar es el del 24-->
+              <th>Tipo</th>					      <!--los datos que están acá se deben adicionar después-->
               <th>Responsable</th>
               <th>Facturado</th>
               <th>Pendiente</th>
@@ -762,21 +762,21 @@
              	<col style="width: 8%">
 			</colgroup>		      
 			<tr>
-              <th>No.</th> /* En BD es un consecutivo pero no automático, porque tengo proyectos con subproyectos*/
+              <th>No.</th>                    <!-- En BD es un consecutivo pero no automático, porque tengo proyectos con subproyectos-->
               <td></td>
-              <th>Proyecto/Cliente</th> /* En BD texto de hasta 20 caracteres, obligatorio*/ 
-              <th>Código<br>Proyecto</th> /* En BD texto de hasta 6 caracteres NO obligatorio*/
-              <th>Tipo de<br>Servicio</th> /* En BD Nomenclador: Proyecto, Proyecto Interno, Proyecto Asociado, Servicio. Este Nomenclador debe ser editable. Campo Obligatorio*/
-              <th>Responsable</th> /* En BD texto de hasta 20 caracteres*/
-              <th>Servicio<br>Facturado</th> /* En BD admite el símbolo $, es una cantidad. Por default = 0*/
-              <th>Pendiente<br>facturar</th> /* En BD admite el símbolo $, es una cantidad. Por default = 0*/ 
-              <th>Plan</th> /* Boolean, Default = False. Si está en true, el resto debe estar en false. Al menos un Item de los booleanos debe estar en true. Puede haber + de uno en true*/
-              <th>Contratación</th>	/* Boolean, Default = False*/		  
-              <th>Desarrollo</th>/* Boolean, Default = False*/
-              <th>Calidad</th>/* Boolean, Default = False*/
-              <th>Servicio<br>Terminado</th> /* Boolean, Default = False.  Si está en true, el resto debe estar en false. */
-			  <th>Estado<br>Proyecto</th> /* Nomenclador: Terminado, Atrasado, Detenido, Interrumpido, En proceso. Default: En proceso. Nomenclador editable./
-			  <th>Observaciones</th> /* En BD texto de hasta 250 caracteres. En la vista no es necesario mostrar todo el contenido*/
+              <th>Proyecto/Cliente</th>       <!-- En BD texto de hasta 20 caracteres, obligatorio--> 
+              <th>Código<br>Proyecto</th>     <!-- En BD texto de hasta 6 caracteres NO obligatorio-->
+              <th>Tipo de<br>Servicio</th>    <!-- En BD Nomenclador: Proyecto, Proyecto Interno, Proyecto Asociado, Servicio. Este Nomenclador debe ser editable. Campo Obligatorio-->
+              <th>Responsable</th>            <!-- En BD texto de hasta 20 caracteres-->
+              <th>Servicio<br>Facturado</th>  <!-- En BD admite el símbolo $, es una cantidad. Por default = 0-->
+              <th>Pendiente<br>facturar</th>  <!-- En BD admite el símbolo $, es una cantidad. Por default = 0--> 
+              <th>Plan</th>                   <!-- Boolean, Default = False. Si está en true, el resto debe estar en false. Al menos un Item de los booleanos debe estar en true. Puede haber + de uno en true-->
+              <th>Contratación</th>	          <!-- Boolean, Default = False-->		  
+              <th>Desarrollo</th>             <!-- Boolean, Default = False-->
+              <th>Calidad</th>                <!-- Boolean, Default = False-->
+              <th>Servicio<br>Terminado</th>  <!-- Boolean, Default = False.  Si está en true, el resto debe estar en false. -->
+			  <th>Estado<br>Proyecto</th>           <!-- Nomenclador: Terminado, Atrasado, Detenido, Interrumpido, En proceso. Default: En proceso. Nomenclador editable.-->
+			  <th>Observaciones</th>                <!-- En BD texto de hasta 250 caracteres. En la vista no es necesario mostrar todo el contenido-->
             </tr>
           </thead>
           <tbody>
@@ -1261,16 +1261,16 @@
               <td></td>
             </tr>	
 	        <tr class="table-dark">
-              <td colspan="3" style="text-align: center;">Proyectos: 16</td>  /* Este valor incluye todo lo que no es servicio. En el caso de Macroproyectos, que tienen*/
-              <td colspan="2" style="text-align: center;">Servicios: 10</td>  /* subproyectos, se cuentan los subproyectos*/
-              <td></td>														  /* El total Facturado la suma de todo lo que está en la columna Servicio Facturado*/	
-              <td class="texto-pequeño">$255,859.40</td> <!-- Total facturado -->
-              <td class="texto-pequeño">$33,147.50</td>   <!-- Total pendiente por facturar --> /* Es la suma de todo los que está por facturar, pero si aparece un valor en rojo, no se suma. */
-              <td style="text-align: center;">1</td>      <!-- Total servicios en plan, se habló con cliente, no ha concretado cita inicial  --> 
-              <td style="text-align: center;">1</td>      <!-- Total servicios en contratación (reuniones de requisitos, oferta, firma contrato) --> 
-              <td style="text-align: center;">6</td>      <!-- Total servicios en desarrollo --> 
-              <td style="text-align: center;">4</td>      <!-- Total servicios en calidad -->
-              <td style="text-align: center;">12</td>     <!-- Total servicios terminados (si en verde, están pagados) -->
+              <td colspan="3" style="text-align: center;">Proyectos: 16</td>  <!-- Este valor incluye todo lo que no es servicio. En el caso de Macroproyectos, que tienen-->
+              <td colspan="2" style="text-align: center;">Servicios: 10</td>  <!-- subproyectos, se cuentan los subproyectos-->
+              <td></td>														                            <!-- El total Facturado la suma de todo lo que está en la columna Servicio Facturado-->	
+              <td class="texto-pequeño">$255,859.40</td>                      <!-- Total facturado -->
+              <td class="texto-pequeño">$33,147.50</td>                       <!-- Total pendiente por facturar --> <!-- Es la suma de todo los que está por facturar, pero si aparece un valor en rojo, no se suma. -->
+              <td style="text-align: center;">1</td>                          <!-- Total servicios en plan, se habló con cliente, no ha concretado cita inicial  --> 
+              <td style="text-align: center;">1</td>                          <!-- Total servicios en contratación (reuniones de requisitos, oferta, firma contrato) --> 
+              <td style="text-align: center;">6</td>                          <!-- Total servicios en desarrollo --> 
+              <td style="text-align: center;">4</td>                          <!-- Total servicios en calidad -->
+              <td style="text-align: center;">12</td>                         <!-- Total servicios terminados (si en verde, están pagados) -->
             </tr>
             
           </tbody>
