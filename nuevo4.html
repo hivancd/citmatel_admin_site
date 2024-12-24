@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Datos GDA</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://getbootstrap.com/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="https://getbootstrap.com/docs/5.0/assets/js/docs.min.js"></script>
+  <style>
+        .fila-terminada {
+            /*text-align: center; Centra el texto */
+            color: green; /* Cambia el color del texto */
+        }
+
+        .texto-pequeño {
+            font-size: 14px; /* Ajusta el tamaño de fuente según sea necesario */
+        }
+  </style>
+
+  <style type ="text/css" >
+	.footer{ 
+        /*position: fixed;*/
+        text-align: center;    
+        bottom: 0px; 
+        width: 100%;
+    }  
+   
+    h2, h4 {
+    font-weight: bold;
+    }
+  
+    .shake-top {
+    animation: shake-top 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+    }
+
+    @keyframes shake-top {
+    0%,
+    100% {
+      transform: rotate(0deg);
+      transform-origin: 50% 0;
+    }
+    10% {
+      transform: rotate(2deg);
+    }
+    20%,
+    40%,
+    60% {
+      transform: rotate(-4deg);
+    }
+    30%,
+    50%,
+    70% {
+      transform: rotate(4deg);
+    }
+    80% {
+      transform: rotate(-2deg);
+    }
+    90% {
+      transform: rotate(2deg);
+    }
+  }
+  #myTabContent{
+    margin-top: 30px;
+  }
+</style>
+</head>
+<body>
+  
+
+
+<div class="container mt-3">
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+    <button class="nav-link " id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">2023</button>
+    </li>
+    <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">2024</button>
+    </li>
+
+  </ul>
+  <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+        <div class="row">
+          <div class="col-lg-10">  
+            <h2>Desarrollo de sitios web y aplicaciones a la medida</h2>
+            <p>Información de los proyectos de desarrollo de sitios web y aplicaciones a la medida correspondiente al año 2023.</p>  
+          </div>
+          <div class="col-lg-2">
+            <button type="button" class="btn btn-danger shake-top" data-bs-toggle="modal" data-bs-target="#myModal2023">Plan anual UEB</button>
+          </div>
+      
+          <!-- The Modal -->
+          <div class="modal fade" id="myModal2023">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+      
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <h4 class="modal-title">Plan del año 2023 de la UEB DS</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+      
+                <!-- Modal body -->
+                <div class="modal-body">
+                  <p>Plan de ingresos del año 2023 de la UEB Desarrollo de Software.</p>
+                  <table class="table table-striped table-bordered">
+                    <thead class="table-dark">
+                      <tr>
+                        <th>Mes</th>
+                        <th>Plan</th>		/*Para los datos que se muestran cuando se da clic en el botón modal*/
+                        <th>Acumulado</th>  /*el acumulado del mes es igual a la suma del acumulado del mes anterior + el real del mes*/
+                      </tr>					/*en el caso de enero, el acumulado del mes anterior es cero*/	
+                    </thead>				/*en el año 2023 no está la columna Real, si se agrega, hay que poner los datos correctos*/
+                    <tbody>					/*el modal del 2024 tiene el diseño que necesitamos*/
+                      <tr>					/*tener en cuenta que al final, en el pie del modal, debe estar el total del plan del año y el % de cumplimiento*/
+                        <td>Enero</td>		/*el % de cumplimiento se calcula por la típica regla de 3*/
+                        <td>$4,000.00</td>
+                        <td>$4,000.00</td>
+                      </tr>
+                      <tr>
+                        <td>Febrero</td>
+                        <td>$5,000.00</td>
+                        <td>$9,000.00</td>
+                      </tr>
+                      <tr>
+                        <td>Marzo</td>
+                        <td>$2,000.00</td>
+                        <td>$11,000.00</td>
+                      </tr>
+                      <tr>
+                        <td>Abril</td>
+                        <td>$2,000.00</td>
+                        <td>$13,000.00</td>
+                      </tr>
+                      <tr>
+                        <td>Mayo</td>
+                        <td>$2,500.00</td>
+                        <td>$15,500.00</td>
+                      </tr>
+                      <tr>
+                        <td>Junio</td>
+                        <td>$78,000.00</td>
+                        <td>$93,500.00</td>
+                      </tr>
+                      <tr>
+                        <td>Julio</td>
+                        <td>$2,500.00</td>
+                        <td>$96,000.00</td>
+                      </tr>
+                      <tr>
+                        <td>Agosto</td>
+                        <td>$2,000.00</td>
+                        <td>$98,000.00</td>
+                      </tr>
+                      <tr>
+                        <td>Septiembre</td>
+                        <td>$1,000.00</td>
+                        <td>$99,000.00</td>
+                      </tr>
+                      <tr>
+                        <td>Octubre</td>
+                        <td>$1,000.00</td>
+                        <td>$100,000.00</td>
+                      </tr>
+                      <tr>
+                        <td>Noviembre</td>
+                        <td>$1,000.00</td>
+                        <td>$101,000.00</td>
+                      </tr>
+                      <tr>
+                        <td>Diciembre</td>
+                        <td>$1,000.00</td>
+                        <td>$120,000.00</td>
+                      </tr>
+                    </tbody>
+                    <tfoot class="table-dark">
+                      <tr>
+                        <th>Total</th>
+                        <th colspan="2" style="text-align: center;">$120,000.00</th>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+      
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+      
+              </div>
+            </div>
+          </div>
+      </div>
+        
+        <table class="table table-hover">
+          <thead class="table-light">
+            <tr>
+              <th>No.</th>
+          <td></td>							/*datos de los proyectos y servicios*/
+              <th>Proyecto/Cliente</th>  	/*en este caso el número de columnas también difiere entre el 23 y el 2024*/
+              <th>Código</th>				/*el diseño que se debe quedar es el del 24*/
+              <th>Tipo</th>					/*los datos que están acá se deben adicionar después*/	
+              <th>Responsable</th>
+              <th>Facturado</th>
+              <th>Pendiente</th>
+              <th>Desarrollo</th>
+              <th>Calidad</th>
+              <th>Terminado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td><a href="http://172.16.1.157/accdrupal9/" target="_blank"><i class="bi bi-globe-americas"></i></a></td>
+              <td>ACC</td>
+              <td>DES2222</td>
+              <td>Proyecto</td>
+              <td>Lianny de DP</td>
+              <td>$ 0.00</td>
+              <td>$ 0.00</td>
+              <td></td>
+              <td>X</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td></td>
+              <td>ACRC</td>
+              <td>DES2317</td>
+              <td>Proyecto</td>
+              <td>Yanelis FV</td>
+              <td>$ 2,5000.00</td>
+              <td>$ 0.00</td>
+              <td></td>
+              <td>X</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td><a href="http://172.16.1.157/cimagt/" target="_blank"><i class="bi bi-globe-americas"></i></a></td>
+              <td>CIMAGT</td>
+              <td>DES2241</td>
+              <td>Proyecto</td>
+              <td>David CR</td>
+              <td>$ 0.00</td>
+              <td>$ 0.00</td>
+              <td></td>
+              <td></td>
+              <td>X</td>
+            </tr>
+          <tr>
+              <td>4</td>
+          <td><a href="http://172.16.1.157/citmatel/" target="_blank"><i class="bi bi-globe-americas"></i></a></td>
+              <td>CITMATEL</td>
+              <td>DES2293</td>
+              <td>Proyecto</td>
+              <td>David CR</td>
+              <td>$ 0.00</td>
+              <td>$ 0.00</td>
+              <td></td>
+              <td>X</td>
+              <td></td>
+            </tr>
+          <tr>
+              <td>5</td>
+          <td></td>
+              <td>COCINA CUBANA</td>
+              <td>DES2296</td>
+              <td>Proyecto</td>
+              <td>Lianny de DP </td>
+              <td>$ 0.00</td>
+              <td>$ 0.00</td>
+              <td>X</td>
+              <td></td>
+              <td></td>
+            </tr>
+              <td>6</td>
+          <td><a href="http://172.16.1.157/ganas/" target="_blank"><i class="bi bi-globe-americas"></i></a></td>
+              <td>GANADERÍAS</td>
+              <td>DES2240</td>
+              <td>Proyecto</td>
+              <td>David CR</td>
+              <td>$ 2,650.00 + $ 6,90.00 <sup style="color: blue;"> 1</sup></td>
+              <td>$ 0.00</td>
+              <td></td>
+              <td></td>
+              <td>X</td>
+            </tr>
+          <tr>
+              <td>7</td>
+          <td><a href="http://172.16.1.157/mundolatino/" target="_blank"><i class="bi bi-globe-americas"></i></a></td>
+              <td>MUNDO LATINO</td>
+              <td>DES2262</td>
+              <td>Proyecto</td>
+              <td>Darío RS</td>
+              <td>$ 2,475.00</td>
+              <td>$ 0.00</td>
+              <td></td>
+              <td></td>
+              <td>X</td>
+            </tr>
+          <tr>
+              <td>8</td>
+          <td><a href="http://172.16.1.157/rodasxxi/" target="_blank"><i class="bi bi-globe-americas"></i></a></td>
+              <td>RODAS</td>
+              <td>DES22100</td>
+              <td>Proyecto</td>
+              <td>David CR</td>
+              <td>$ 0.00</td>
+              <td>$ 0.00</td>
+              <td>X</td>
+              <td></td>
+              <td></td>
+            </tr>
+          <tr>
+              <td>9</td>
+          <td><a href="http://sarbo.citmatel.inf.cu/" target="_blank"><i class="bi bi-globe-americas"></i></a></td>
+              <td>ARBO-GM</td>
+              <td>DES21109</td>
+              <td>Proyecto</td>
+              <td>Yanelis FV</td>
+              <td>$ 0.00</td>
+              <td>$ 0.00</td>
+              <td></td>
+              <td></td>
+              <td>X</td>
+            </tr>
+          <tr>
+              <td>10</td>
+          <td><a href="http://172.17.100.110:3001/" target="_blank"><i class="bi bi-globe-americas"></i></a></td>
+              <td>RECTI</td>
+              <td>DES21110</td>
+              <td>Proyecto</td>
+              <td>Yanelis FV</td>
+              <td rowspan="3">$ 32,581.00 (x4)</td>
+              <td rowspan="3">$ 0.00</td>
+              <td></td>
+              <td>X</td>
+              <td></td>
+            </tr>
+          <tr>
+              <td>11</td>
+          <td></td>
+              <td>SPP</td>
+              <td>-</td>
+              <td>Proyecto</td>
+              <td>Yanelis FV</td>
+              
+              
+              <td>X</td>
+              <td></td>
+              <td></td>
+            </tr>
+          <tr>
+              <td>12</td>
+          <td></td>
+              <td>SCCT</td>
+              <td>-</td>
+              <td>Proyecto</td>
+              <td>Yanelis FV</td>
+              
+              
+              <td>X</td>
+              <td></td>
+              <td></td>
+            </tr>
+          <tr>
+              <td>13</td>
+          <td></td>
+              <td>TRANSIMPORT</td>
+              <td>-</td>
+              <td>Servicio</td>
+              <td>Darío RS</td>
+              <td>$ 4030.00 + $1,379.8<sup style="color: blue;"> 1</sup></td>
+              <td>$ 0.00</td>
+              <td></td>
+              <td></td>
+              <td>X</td>
+            </tr>
+          <tr style="color:red;">
+              <td>14</td>
+          <td></td>
+              <td>ISRI</td>
+              <td>-</td>
+              <td>Servicio</td>
+              <td></td>
+              <td>$ 0.00</td>
+              <td>$ 1,020.00</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          <tr>
+              <td>15</td>
+          <td><a href="http://nuevo.cipi.cu" target="_blank"><i class="bi bi-globe-americas"></i></a>
+              <a href="http://http://www.cna.cipi.cu/cna" target="_blank"><i class="bi bi-globe-americas"></i></a></td>
+              <td>CIPI</td>
+              <td>-</td>
+              <td>Servicio</td>
+              <td>Yanelis FV</td>
+              <td>$ 0.00</td>
+              <td style="color: red;">$ Definir</td>
+              <td></td>
+              <td></td>
+              <td>X</td>
+            </tr>
+          <tr>
+              <td>16</td>
+          <td><a href="http://www.boga.cu" target="_blank"><i class="bi bi-globe-americas"></i></a></td>
+              <td>BOGA</td>
+              <td>-</td>
+              <td>Servicio</td>
+              <td>Lianny de DP</td>
+              <td>$ 550.00</td>
+              <td>$ 0.00</td>
+              <td></td>
+              <td></td>
+              <td>X</td>
+            </tr>
+          <tr>
+              <td>17</td>
+          <td></td>
+              <td>SERVIRTE</td>
+              <td>-</td>
+              <td>Servicio</td>
+              <td>Lianny de DP</td>
+              <td>$ 550.00</td>
+              <td>$ 0.00</td>
+              <td></td>
+              <td></td>
+              <td>X</td>
+            </tr>
+            <tr>
+              <td>18</td>
+          <td></td>
+              <td>GEPALSI</td>
+              <td>-</td>
+              <td>Servicio</td>
+              <td></td>
+              <td>$ 2,380.00</td>
+              <td>$ 2,380.00</td>
+              <td>X</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr style="color:red;">
+              <td>19</td>
+          <td></td>
+              <td>ACUARIO</td>
+              <td>-</td>
+              <td>Proyecto</td>
+              <td></td>
+              <td>$ 0.00</td>
+              <td style="color: red;">$ 7,985.60</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>20</td>
+          <td><a href="http://www.citma.gob.cu" target="_blank"><i class="bi bi-globe-americas"></i></a></td>
+              <td>CITMA</td>
+              <td>-</td>
+              <td>Servicio</td>
+              <td>David CR</td>
+              <td>$ 400.00</td>
+              <td>$ 0.00</td>
+              <td></td>
+              <td></td>
+              <td>X</td>
+            </tr>
+            <tr>
+              <td>21</td>
+          <td></td>
+              <td>ONN</td>
+              <td>-</td>
+              <td>Proyecto</td>
+              <td>David CR</td>
+              <td>$ 87,00.00</td>
+              <td>$ 0.00</td>
+              <td></td>
+              <td>X</td>
+              <td></td>
+            </tr>
+            <tr style="color:red;">
+              <td>22</td>
+          <td></td>
+              <td>AMALIE</td>
+              <td>-</td>
+              <td>Proyecto</td>
+              <td></td>
+              <td>$ 0.00</td>
+              <td style="color: red;">$ 19,897.00</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>23</td>
+          <td><a href="http://www.cecofis.cu" target="_blank"><i class="bi bi-globe-americas"></i></a></td>
+              <td>CECOFIS (mejoras y actualización)</td>
+              <td>-</td>
+              <td>Servicio</td>
+              <td>David CR</td>
+              <td>$ 623.60</td>
+              <td>$ 0.00</td>
+              <td></td>
+              <td></td>
+              <td>X</td>
+            </tr>
+            <tr>
+              <td>24</td>
+          <td><a href="http://www.agriactua.cu" target="_blank"><i class="bi bi-globe-americas"></i></a></td>
+              <td>CENSA (actualización)</td>
+              <td>-</td>
+              <td>Servicio</td>
+              <td>David CR</td>
+              <td>$ 400.0.00</td>
+              <td>$ 0.00</td>
+              <td></td>
+              <td></td>
+              <td>X</td>
+            </tr>
+            <tr>
+              <td>25</td>
+          <td><a href="http://www.academiaciencias.cu/" target="_blank"><i class="bi bi-globe-americas"></i></a></td>
+              <td>ACC (actualización)</td>
+              <td>-</td>
+              <td>Servicio</td>
+              <td>David CR</td>
+              <td>$ 400.00</td>
+              <td>$ 0.00</td>
+              <td></td>
+              <td></td>
+              <td>X</td>
+            </tr>
+            <tr>
+              <td>26</td>
+          <td></td>
+              <td>Servicios Médicos</td>
+              <td>-</td>
+              <td>Proyecto</td>
+              <td>Yanet Cabargas</td>
+              <td>$ 0.00</td>
+              <td>$ 10,000.00</td>
+              <td>X</td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>27</td>
+          <td></td>
+              <td>SUCHEL (actualización)</td>
+              <td>-</td>
+              <td>Servicio</td>
+              <td>David CR</td>
+              <td>$ 400.00</td>
+              <td>$ 0.00</td>
+              <td></td>
+              <td></td>
+              <td>X</td>
+            </tr>
+            <tr>
+              <tr>
+                <td>28</td>
+            <td></td>
+                <td>TRD (actualización)</td>
+                <td>-</td>
+                <td>Servicio</td>
+                <td>David CR</td>
+                <td>$ 400.00</td>
+                <td>$ 0.00</td>
+                <td></td>
+                <td></td>
+                <td>X</td>
+              </tr>
+              <tr>
+            <tr>
+              <tr>
+                <td>29</td>
+            <td></td>
+                <td>CIMAGT (actualización)</td>
+                <td>-</td>
+                <td>Servicio</td>
+                <td>David CR</td>
+                <td>$ 0.00</td>
+                <td>$ 400.00<sup style="color: blue;"> 4 </sup></td>
+                <td>X</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>30</td>
+            <td></td>
+                <td>PROEVENTOS (actualización)</td>
+                <td>-</td>
+                <td>Servicio</td>
+                <td>David CR</td>
+                <td>$ 0.00</td>
+                <td>$ 400.00</td>
+                <td>X</td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>31</td>
+            <td></td>
+                <td>DIMITROVA</td>
+                <td>-</td>
+                <td>Proyecto</td>
+                <td></td>
+                <td>$ 4,965.00</td>
+                <td>$ 4,965.00</td>
+                <td>X<sup style="color: blue;"> 3</sup></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>32</td>
+            <td></td>
+                <td>Trámites ONN</td>
+                <td>-</td>
+                <td>Servicio</td>
+                <td></td>
+                <td>$ 8,048.50</td>
+                <td>$ 0.00</td>
+                <td></td>
+                <td></td>
+                <td>X</td>
+              </tr>
+              <tr>
+                <td>33</td>
+            <td></td>
+                <td>ARENTUR (actualización)</td>
+                <td>-</td>
+                <td>Servicio</td>
+                <td></td>
+                <td>$ 400.00</td>
+                <td>$ 0.00</td>
+                <td></td>
+                <td></td>
+                <td>X</td>
+              </tr>
+              <tr>
+          <tr class="table-dark">
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>33</td>
+              <td></td>
+              <td></td>
+              <td>$ 172.361.70</td>
+              <td>$ 17,745.00</td>
+              <td>9</td>
+              <td>5</td>
+              <td>16</td>
+            </tr>
+            
+          </tbody>
+        </table>
+        <p style="color:red;">* Los ingresos marcados en color rojo no están confirmados por el cliente por tanto no se suman en el total.</p>
+        <p style="color: blue;"><sup>1</sup> Corresponde a la adición de funcionalidades al sitio web que no estaban definidos a la firma del contrato.</p>
+        <p style="color: blue;"><sup>2</sup> Facturado y no pagado por el cliente aún.</p>
+        <p style="color: blue;"><sup>3</sup> En espera del contenido por parte del cliente.</p>
+        <p style="color: blue;"><sup>4</sup> Prefacturado.</p>
+        
+        <div class="footer"><p>Actualizado: <b>10 de enero</b> de 2024</p></div>
+
+      </div>
+      
+      <div class="tab-pane fade show active" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+        
+        <div class="row">
+          <div class="col-lg-10">  
+            <h2>Desarrollo de sitios web y aplicaciones a la medida</h2>
+            <p>Información de los proyectos de desarrollo de sitios web y aplicaciones a la medida correspondiente al año 2024.</p>  
+          </div>
+          <div class="col-lg-2">
+            <button type="button" class="btn btn-danger shake-top" data-bs-toggle="modal" data-bs-target="#myModal2024">Plan anual UEB</button>
+          </div>
+      
+          <!-- The Modal -->
+          <div class="modal fade" id="myModal2024">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+      
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <h4 class="modal-title">Plan del año 2024 de la UEB DS</h4>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+      
+                <!-- Modal body -->
+                <div class="modal-body">
+                  <p>Plan de ingresos del año 2024 de la UEB Desarrollo de Software.</p>
+                  <table class="table table-striped table-bordered">
+                    <thead class="table-dark">
+                      <tr>
+                        <th>Mes</th>
+                        <th>Plan</th>
+						<th>Real</th>
+                        <th>Acumulado</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Enero</td>
+                        <td>$2,400.00</td>
+						<td>$3,505.50</td>
+                        <td>$3,505.50</td>
+                      </tr>
+                      <tr>
+                        <td>Febrero</td>
+                        <td>$5,000.00</td>
+						<td>$1,068.70</td>
+                        <td>$4,574.20</td>
+                      </tr>
+                      <tr>
+                        <td>Marzo</td>
+                        <td>$30,000.00</td>
+						<td>$37,500.00.00</td>
+                        <td>$42,074.20</td>
+                      </tr>
+                      <tr>
+                        <td>Abril</td>
+                        <td>$5,000.00</td>
+						<td>$16.965.00</td>
+                        <td>$59,039.20</td>
+                      </tr>
+                      <tr>
+                        <td>Mayo</td>
+                        <td>$5,000.00</td>
+						<td>$5,628.70</td>
+                        <td>$64,667.90</td>
+                      </tr>
+                      <tr>
+                        <td>Junio</td>
+                        <td>$35,000.00</td>
+						<td>$37,500.00</td>
+                        <td>$102,167.90</td>
+                      </tr>
+                      <tr>
+                        <td>Julio</td>
+                        <td>$5,000.00</td>
+						<td>$7,890.00</td>
+                        <td>$110,057,90</td>
+                      </tr>
+                      <tr>
+                        <td>Agosto</td>
+                        <td>$2,000.00</td>
+						<td>$3,900.00</td>
+                        <td>$113,957.90</td>
+                      </tr>
+                      <tr>
+                        <td>Septiembre</td>
+                        <td>$40,000.00</td>
+						<td>$43,755.00</td>
+                        <td>$157,712.90</td>
+                      </tr>
+                      <tr>
+                        <td>Octubre</td>
+                        <td>$20,000.00</td>
+						<td>$20,965.00</td>
+                        <td >$178,677.90</td>
+                      </tr>
+                      <tr>
+                        <td>Noviembre</td>
+                        <td>$10,000.00</td>
+						<td>$12,199.00</td>
+                        <td>$190,876.90</td>
+                      </tr>
+                      <tr>
+                        <td>Diciembre</td>
+                        <td>$40,000.00</td>
+						<td>$64,982.50</td>
+                        <td style="color: green;">$255,859.40</td>
+                      </tr>
+                    </tbody>
+                    <tfoot class="table-dark">
+                      <tr>
+                        <th style="text-align: center;">Plan anual $240,000.00 </th>
+                        <th colspan="3" style="text-align: center;">% Cumplimiento: 106.6</th>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+      
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+      
+              </div>
+            </div>
+          </div>
+      </div>
+        
+        <table class="table table-hover">
+          <thead class="table-light">
+			<colgroup>
+				<col> 
+				<col>
+				<col style="width: 10%">
+				<col style="width: 10%">
+             	<col style="width: 10%">
+             	<col style="width: 10%">
+				<col style="width: 12%">
+            	<col style="width: 12%">
+				<col style="width: 10%">
+				<col style="width: 10%">
+				<col style="width: 10%">
+             	<col style="width: 8%">
+             	<col style="width: 8%">
+			</colgroup>		      
+			<tr>
+              <th>No.</th> /* En BD es un consecutivo pero no automático, porque tengo proyectos con subproyectos*/
+              <td></td>
+              <th>Proyecto/Cliente</th> /* En BD texto de hasta 20 caracteres, obligatorio*/ 
+              <th>Código<br>Proyecto</th> /* En BD texto de hasta 6 caracteres NO obligatorio*/
+              <th>Tipo de<br>Servicio</th> /* En BD Nomenclador: Proyecto, Proyecto Interno, Proyecto Asociado, Servicio. Este Nomenclador debe ser editable. Campo Obligatorio*/
+              <th>Responsable</th> /* En BD texto de hasta 20 caracteres*/
+              <th>Servicio<br>Facturado</th> /* En BD admite el símbolo $, es una cantidad. Por default = 0*/
+              <th>Pendiente<br>facturar</th> /* En BD admite el símbolo $, es una cantidad. Por default = 0*/ 
+              <th>Plan</th> /* Boolean, Default = False. Si está en true, el resto debe estar en false. Al menos un Item de los booleanos debe estar en true. Puede haber + de uno en true*/
+              <th>Contratación</th>	/* Boolean, Default = False*/		  
+              <th>Desarrollo</th>/* Boolean, Default = False*/
+              <th>Calidad</th>/* Boolean, Default = False*/
+              <th>Servicio<br>Terminado</th> /* Boolean, Default = False.  Si está en true, el resto debe estar en false. */
+			  <th>Estado<br>Proyecto</th> /* Nomenclador: Terminado, Atrasado, Detenido, Interrumpido, En proceso. Default: En proceso. Nomenclador editable./
+			  <th>Observaciones</th> /* En BD texto de hasta 250 caracteres. En la vista no es necesario mostrar todo el contenido*/
+            </tr>
+          </thead>
+          <tbody>
+            
+            <tr class="fila-terminada">
+              <td>1</td>
+              <td><a href="http://172.16.1.131/acrc/public/admin/login" target="_blank"><i class="bi bi-globe-americas"></i></a></td>
+              <td>ACRC</td>
+              <td>DES2317</td>
+              <td>Proyecto</td>
+              <td>Yanelis FV</td>
+              <td>$2,137.40</td>
+              <td>$0.00</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td style="text-align: center;">X</td>
+              <td>Atrasado</td>
+              <td class="texto-pequeño">Falta documentación</td>
+           </tr>
+            
+            <tr>
+              <td>2</td>
+              <td><a href="http://172.16.1.131/citmatel/" target="_blank"><i class="bi bi-globe-americas"></i></a></td>
+              <td>CITMATEL</td>
+              <td>DES2293</td>
+              <td>Proyecto Interno</td>
+              <td>David CR</td>
+              <td>-</td>
+              <td>-</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td style="text-align: center;">X</td>
+              <td></td>
+              <td>Atrasado</td>
+              <td></td>
+            </tr>
+          
+            <tr>
+              <td>3</td>
+              <td></td>
+              <td>COCINA CUBANA</td>
+              <td>DES2296</td>
+              <td>Proyecto Interno</td>
+              <td>Lianny de DP </td>
+              <td>-</td>
+              <td>-</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td style="text-align: center;">Detenido</td>
+              <td></td>
+            </tr>
+
+            <tr>
+              <td>4</td>
+              <td><a href="http://172.16.1.131/rodasxxi/" target="_blank"><i class="bi bi-globe-americas"></i></a></td>
+              <td>RODAS</td>
+              <td>DES22100</td>
+              <td>Proyecto Interno</td>
+              <td>David CR</td>
+              <td>-</td>
+              <td>-</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td style="text-align: center;">X</td>
+              <td></td>
+              <td>Atrasado</td>
+              <td></td>
+            </tr>
+          
+            <tr>
+              <td>5</td>
+              <td><a href="http://sarbo.citmatel.inf.cu/" target="_blank"><i class="bi bi-globe-americas"></i></a></td>
+              <td>ARBO-EMP</td>
+              <td>DES21109</td>
+              <td>Proyecto Interno</td>
+              <td>Yanelis FV</td>
+              <td>-</td>
+              <td>-</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td style="text-align: center;">X</td>
+              <td></td>
+              <td>Atrasado</td>
+              <td>Interrumpido</td>
+            </tr>
+          
+            <tr>
+              <td>6</td>
+              <td><a href="http://172.17.100.110:3001/" target="_blank"><i class="bi bi-globe-americas"></i></a></td>
+              <td>Ciencia en Cuba</td>
+              <td>DES21110</td>
+              <td>Proyecto asociado</td>
+              <td>Yanelis FV</td>
+              <td rowspan="4" class="texto-pequeño">$150,000.0</td>
+              <td rowspan="4" class="texto-pequeño">$0.0</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+
+            <tr>
+              <td>6.1</td>
+              <td></td>
+              <td>RECTI</td>
+              <td>-</td>
+              <td>Proyecto</td>
+              <td>Yanelis FV</td>
+              <td></td>
+              <td></td>
+              <td style="text-align: center;">X</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+         
+            <tr>
+              <td>6.2</td>
+              <td></td>
+              <td>SPP</td>
+              <td>-</td>
+              <td>Proyecto</td>
+              <td>Yanelis FV</td>
+              <td></td>
+              <td></td>
+              <td style="text-align: center;">X</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          
+            <tr>
+              <td>6.3</td>
+              <td></td>
+              <td>SCCT</td>
+              <td>-</td>
+              <td>Proyecto</td>
+              <td>Yanelis FV</td>
+              <td></td>
+              <td></td>
+              <td style="text-align: center;">X</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+
+            <tr>
+              <td>6.4</td>
+              <td></td>
+              <td>Portal Ciencia en Cuba</td>
+              <td>-</td>
+              <td>Proyecto</td>
+              <td>Yanelis FV</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td style="text-align: center;">X</td>
+              <td></td>
+              <td></td>
+            </tr>
+          
+            <tr class="fila-terminada">
+              <td>7</td>
+              <td><a href="http://172.16.1.131/gepalsi/" target="_blank"><i class="bi bi-globe-americas"></i></a></td>
+              <td>GEPALSI</td>
+              <td>-</td>
+              <td>Servicio</td>
+              <td>Yanelis FV</td>
+              <td>$2,380.00</td>
+              <td>$0.00</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td style="text-align: center;">X</td>
+              <td></td>
+              <td></td>
+            </tr>
+            
+            <tr class="fila-terminada">
+              <td>8</td>
+              <td><a href="http://www.citma.gob.cu" target="_blank"><i class="bi bi-globe-americas"></i></a></td>
+              <td>CITMA</td>
+              <td>-</td>
+              <td>Servicio</td>
+              <td>David CR</td>
+              <td>$1,125.50</td>
+              <td>$0.00</td>
+              <td></td>
+              <td></td>
+			  <td></td>
+              <td></td>
+              <td style="text-align: center;">X</td>
+              <td></td>
+              <td></td>
+              
+            </tr>
+            
+            <tr class="fila-terminada">
+              <td>9</td>
+              <td><a href="http://172.16.1.131/onn/" target="_blank"><i class="bi bi-globe-americas"></i></a></td>
+              <td>ONN</td>
+              <td>-</td>
+              <td>Proyecto</td>
+              <td>David CR</td>
+              <td>$0.00</td>
+              <td>$0.00</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td style="text-align: center;">X</td>
+              <td>Atrasado</td>
+              <td></td>
+              <td></td>
+            </tr>
+            
+            <tr class="fila-terminada">
+              <td>10</td>
+              <td><a href="https://fitsalud.ceniai.inf.cu/" target="_blank"><i class="bi bi-globe-americas"></i></a></td>
+              <td>Servicios Médicos</td>
+              <td>-</td>
+              <td>Proyecto</td>
+              <td>Yanet Cabargas</td>
+              <td>$12,000.0</td>
+              <td>$0.00</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td style="text-align: center;">X</td>
+              <td></td>
+              <td></td>
+            </tr>
+            
+            <tr class="fila-terminada">
+              <td>11</td>
+              <td><a href="http://172.16.1.131/dimitrova/" target="_blank"><i class="bi bi-globe-americas"></i></a></td>
+              <td>DIMITROVA</td>
+              <td>-</td>
+              <td>Proyecto</td>
+              <td>David CR</td>
+              <td>$4,965.00</td>
+              <td>$0.00</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td style="text-align: center;">X</td>                                         
+              <td></td>
+              <td></td>
+            </tr>
+              
+            <tr class="fila-terminada">
+              <td>12</td>
+              <td></td>
+              <td>RAÍCES</td>
+              <td>-</td>
+              <td>Servicio</td>
+              <td></td>
+              <td>$5,944.00</td>
+              <td>$0.00</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td style="text-align: center;">X</td>
+              <td></td>
+              <td></td>
+            </tr>
+
+            <tr>
+              <td>13</td>
+              <td></td>
+              <td>NATURALEZA SECRETA</td>
+              <td>-</td>
+              <td>Proyecto</td>
+              <td>Mariana</td>
+              <td>$ 0.00</td>
+              <td style="color:red;" class="texto-pequeño">$16,800.00</td>
+              <td style="text-align: center;">X</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+
+            <tr>
+              <td>14</td>
+              <td></td>
+              <td>Trámites ONN</td>
+              <td>-</td>
+              <td>Servicio</td>
+              <td></td>
+              <td>$10,980.00</td>
+              <td>$0.00</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td style="text-align: center;">X</td>            
+              <td></td>
+              <td></td>
+            </tr>
+
+           <tr>
+              <td>15</td>
+              <td></td>
+              <td>Tarea Vida</td>
+              <td>-</td>
+              <td>Proyecto asociado</td>
+              <td>Mariana</td>
+              <td>$16,000.0</td>
+              <td>$0.00</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td style="text-align: center;">X</td>
+              <td></td>
+              <td>Parcial</td>
+            </tr>
+			
+			<tr>
+              <td>16</td>
+              <td></td>
+              <td>REDSA</td>
+              <td>-</td>
+              <td>Servicio</td>
+              <td></td>
+              <td>$5,665.00</td>
+              <td>$5,665.00</td>
+              <td></td>
+              <td></td>
+              <td style="text-align: center;">X</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+  
+			<tr class="fila-terminada">
+              <td>17</td>
+              <td></td>
+              <td>ENSAL</td>
+              <td>-</td>
+              <td>Servicio</td>
+              <td></td>
+              <td>$7,800.00</td>
+              <td>$0.00</td>
+              <td></td>
+              <td ></td>
+              <td></td>
+              <td></td>
+              <td style="text-align: center;">X</td>
+              <td></td>
+              <td></td>
+            </tr>
+
+			<tr class="fila-terminada">
+              <td>18</td>
+              <td></td>
+              <td>CITMA Isla</td>
+              <td>-</td>
+              <td>Servicio</td>
+              <td></td>
+              <td>$990.00</td>
+              <td>$0,00</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td style="text-align: center;">X</td>            
+              <td></td>
+              <td></td>
+            </tr>
+
+            <tr class="fila-terminada">
+              <td>19</td>
+              <td></td>
+              <td>Proyectos Internacionales</td>
+              <td>-</td>
+              <td>Servicio</td>
+              <td></td>
+              <td>$7,800.00</td>
+              <td>$0,00</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td style="text-align: center;">X</td>            
+              <td></td>
+              <td></td>
+            </tr>
+
+            <tr >
+              <td>20</td>
+              <td></td>
+              <td>CITMA</td>
+              <td>-</td>
+              <td>Proyecto</td>
+              <td>Yanelis FV</td>
+              <td>$27,482.50</td>
+              <td>$27,482.50</td>
+              <td></td>
+              <td></td>
+              <td style="text-align: center;">X</td>
+              <td></td>
+              <td></td>            
+              <td></td>
+              <td></td>
+            </tr>
+
+            <tr class="fila-terminada">
+              <td>21</td>
+              <td></td>
+              <td>ECOAIN 3</td>
+              <td>-</td>
+              <td>Servicio</td>
+              <td>Yanelis FV</td>
+              <td>$590.00</td>
+              <td>$0,00</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td style="text-align: center;">X</td>            
+              <td></td>
+              <td></td>
+            </tr>
+
+            <tr>
+              <td>22</td>
+              <td></td>
+              <td>RTV Comercial</td>
+              <td>-</td>
+              <td>Servicio</td>
+              <td>Yanelis FV</td>
+              <td>$590.00</td>
+              <td>$0,00</td>
+              <td></td>
+              <td style="text-align: center;">X</td>
+              <td></td>
+              <td></td>
+              <td></td>            
+              <td></td>
+              <td></td>
+            </tr>
+
+			<tr>
+              <td>23</td>
+              <td></td>
+              <td>Dimitrov</td>
+              <td>-</td>
+              <td>Proyecto</td>
+              <td>No definido</td>
+              <td>$0.00</td>
+              <td>$0,00</td>
+              <td style="text-align: center;">X</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>            
+              <td></td>
+              <td></td>
+            </tr>	
+	        <tr class="table-dark">
+              <td colspan="3" style="text-align: center;">Proyectos: 16</td>  /* Este valor incluye todo lo que no es servicio. En el caso de Macroproyectos, que tienen*/
+              <td colspan="2" style="text-align: center;">Servicios: 10</td>  /* subproyectos, se cuentan los subproyectos*/
+              <td></td>														  /* El total Facturado la suma de todo lo que está en la columna Servicio Facturado*/	
+              <td class="texto-pequeño">$255,859.40</td> <!-- Total facturado -->
+              <td class="texto-pequeño">$33,147.50</td>   <!-- Total pendiente por facturar --> /* Es la suma de todo los que está por facturar, pero si aparece un valor en rojo, no se suma. */
+              <td style="text-align: center;">1</td>      <!-- Total servicios en plan, se habló con cliente, no ha concretado cita inicial  --> 
+              <td style="text-align: center;">1</td>      <!-- Total servicios en contratación (reuniones de requisitos, oferta, firma contrato) --> 
+              <td style="text-align: center;">6</td>      <!-- Total servicios en desarrollo --> 
+              <td style="text-align: center;">4</td>      <!-- Total servicios en calidad -->
+              <td style="text-align: center;">12</td>     <!-- Total servicios terminados (si en verde, están pagados) -->
+            </tr>
+            
+          </tbody>
+        </table>
+        <p style="color:red;">* Los ingresos marcados en color rojo no están confirmados por el cliente por tanto no se suman en el total.</p>
+		<p style="color:green;">* La fila marcadas en color verde indica servicio o proyecto terminado y/o cobrado completo.</p>
+		<p style="color:black;">* Los servicios o proyectos en "Plan" quedan para el 2025.</p>
+        <!--<p style="color: blue;"><sup>1</sup> Corresponde a la adición de funcionalidades al sitio web que no estaban definidos a la firma del contrato.</p>
+        <p style="color: blue;"><sup>2</sup> Facturado y no pagado por el cliente aún.</p>
+        <p style="color: blue;"><sup>3</sup> En espera del contenido por parte del cliente.</p>
+        <p style="color: blue;"><sup>4</sup> Prefacturado.</p> -->
+        
+        <div class="footer"><p>Actualizado: <b>18 de diciembre</b> de 2024</p></div>
+
+      </div>
+      
+      
+  </div>
+</div>
+</body>
+</html>
