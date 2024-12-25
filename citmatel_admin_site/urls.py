@@ -21,4 +21,5 @@ from proyects import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.front, name='front'),
+    path('example/', views.example, name='example'),
 ]

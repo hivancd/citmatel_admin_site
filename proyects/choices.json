@@ -1,17 +1,17 @@
 {
     "service_type":
-    [
-        "Proyecto",
-        "Proyecto Interno",
-        "Proyecto Asociado",
-        "Servicio"
-    ],
+    {
+        "Proyecto":"Proyecto",
+        "Proyecto Interno":"Proyecto Interno",
+        "Proyecto Asociado":"Proyecto Asociado",
+        "Servicio":"Servicio"
+    },
     "state":
-    [
-        "Terminado",
-        "Atrasado", 
-        "Detenido", 
-        "Interrumpido", 
-        "En proceso"
-    ]
+    {
+        "Terminado":"Terminado",
+        "Atrasado":"Atrasado", 
+        "Detenido":"Detenido", 
+        "Interrumpido":"Interrumpido", 
+        "En proceso":"En proceso"
+    }
 }
