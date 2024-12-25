@@ -1,0 +1,17 @@
+{
+    "service_type":
+    [
+        "Proyecto",
+        "Proyecto Interno",
+        "Proyecto Asociado",
+        "Servicio"
+    ],
+    "state":
+    [
+        "Terminado",
+        "Atrasado", 
+        "Detenido", 
+        "Interrumpido", 
+        "En proceso"
+    ]
+}

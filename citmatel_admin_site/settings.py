@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'djmoney',
     'proyects.apps.ProyectsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
