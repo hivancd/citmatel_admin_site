@@ -1,6 +1,8 @@
 from django.db import models 
 import os,json
 # Todo:
+# More choices
+# Boolean filters
 # Add subproject model
 # Add hyperlink 
 
