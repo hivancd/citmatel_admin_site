@@ -27,7 +27,7 @@
         <tbody>
             {% for p in projects%}
             <tr>
-                {%for f in fields%}<td>{{p.f}}</td>{%endfor%}
+                {%for e in p%}<td>{{e}}</td>{%endfor%}
             </tr>
             {%endfor%}
         </tbody>

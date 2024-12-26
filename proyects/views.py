@@ -5,11 +5,10 @@ import os
 
 def front(request):
     fields = [field for field in Project._meta.get_fields()]
-    projects =list(Project.objects.all())
+    projects=[[getattr(p,f.name) for f in fields] for p in list(Project.objects.all())]
     context={'fields':fields, 'projects':projects}
     return render(request,'proyects/front.html',context)
 
 def example(request):
-    
     context={}
     return render(request,'proyects/example.html',context)
