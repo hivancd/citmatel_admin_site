@@ -55,8 +55,9 @@ class Year(models.Model):
     def __str__(self):
         return str(self.number)
     
-    number = models.BigAutoField(primary_key=True,verbose_name="Año")
-    projects = models.ManyToManyField(Project)
+    number = models.PositiveIntegerField(primary_key=True,verbose_name="Año")
+    projects = models.ManyToManyField(Project,null=True,blank=True)
+    plan= models.PositiveBigIntegerField(blank=True,default=1)
     
 
 class Month(models.Model):
@@ -64,9 +65,9 @@ class Month(models.Model):
     months ={1:'Enero',2:'Febrero',3:'Marzo',4:'Abril',5:'Mayo',6:'Junio',7:'Julio',8:'Agosto',9:'Septiembre',10:'Octubre',11:'Noviembre',12:'Diciembre'}
     
     def __str__(self):
-        return self.months[self.month]
+        return self.months[self.month] +' '+ str(self.year)
      
     month = models.PositiveSmallIntegerField(verbose_name='Mes',choices=months)
-    plan = models.DecimalField(max_digits=9,decimal_places=2,verbose_name='Plan')
-    real = models.DecimalField(max_digits=9,decimal_places=2,verbose_name='Real')
+    plan = models.DecimalField(max_digits=9,decimal_places=2,default=0.0,verbose_name='Plan')
+    real = models.DecimalField(max_digits=9,decimal_places=2,default=0.0,verbose_name='Real')
     year = models.ForeignKey(Year,on_delete=models.CASCADE)
