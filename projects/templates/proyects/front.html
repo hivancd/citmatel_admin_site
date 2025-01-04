@@ -1,7 +1,8 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" type="text/css" href="styles.css" />
+  <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}" />
   <title>Datos GDA</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,6 +17,7 @@
   
 </head>
 <body>
+<div class="container mt-3">
   <h1>{{to_print}}</h1>
   <ul class="nav nav-tabs" id="myTab" role="tablist">
     {% for y in years%}
@@ -26,8 +28,9 @@
       </form>
     </li>
     {%endfor%}
-
   </ul>
+<div class="tab-pane fade show active" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+  <div class="tab-content" id="myTabContent">
     <div class="col-lg-10">  
         <h2>Desarrollo de sitios web y aplicaciones a la medida</h2>
         <p>Información de los proyectos de desarrollo de sitios web y aplicaciones a la medida correspondiente al año {{curr_year}}.</p>  
@@ -86,18 +89,35 @@
         <thead class="table-light">
             <tr>
                 {%for field in fields%}
-                    <th>{{ field.verbose_name }}</th>
+                    <th>{{ field.verbose_name}}</th>
                 {% endfor %}
             </tr>
         </thead>
-        <tbody>
+        <tbody >
           {% for p in curr_projs%}
             <tr>
-                {%for e in p%}<td>{{e}}</td>{%endfor%}
+                {%for key,val in p.items %}<td>{{val|safe}}</td>{%endfor%}
             </tr>
-            {%endfor%}
+          {%endfor%}
+          <tr class="table-dark">
+            <td colspan="3" style="text-align: center;">Proyectos: {{project_count}}</td>  <!-- Este valor incluye todo lo que no es servicio. En el caso de Macroproyectos, que tienen-->
+            <td colspan="2" style="text-align: center;">Servicios: {{service_count}}</td>  <!-- subproyectos, se cuentan los subproyectos-->												                            <!-- El total Facturado la suma de todo lo que está en la columna Servicio Facturado-->	
+            <td class="texto-pequeño">${{factured_total}}</td>                      <!-- Total facturado -->
+            <td class="texto-pequeño">${{pending_total}}</td>                       <!-- Total pendiente por facturar --> <!-- Es la suma de todo los que está por facturar, pero si aparece un valor en rojo, no se suma. -->
+            <td style="text-align: center;">{{plan_count}}</td>                          <!-- Total servicios en plan, se habló con cliente, no ha concretado cita inicial  --> 
+            <td style="text-align: center;">{{contrat_count}}</td>                          <!-- Total servicios en contratación (reuniones de requisitos, oferta, firma contrato) --> 
+            <td style="text-align: center;">{{dev_count}}</td>                          <!-- Total servicios en desarrollo --> 
+            <td style="text-align: center;">{{quality__count}}</td>                          <!-- Total servicios en calidad -->
+            <td style="text-align: center;">{{finished_count}}</td>                         <!-- Total servicios terminados (si en verde, están pagados) -->
+          </tr>
+          
         </tbody>
     </table>
+  </div>
+</div>
+</div>
+</div>
+
   <script>
     document.getElementById("admin_button").onclick= 
       function(){
