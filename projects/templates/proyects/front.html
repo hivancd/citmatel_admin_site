@@ -95,8 +95,8 @@
         </thead>
         <tbody >
           {% for p in curr_projs%}
-            <tr>
-                {%for key,val in p.items %}<td>{{val|safe}}</td>{%endfor%}
+            <tr{{p.css_add|safe}}>
+                {%for key,val in p.items %}{% if not key in non_displayable_context%}<td>{{val|safe}}</td>{%endif%}{%endfor%}
             </tr>
           {%endfor%}
           <tr class="table-dark">

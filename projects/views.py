@@ -33,7 +33,7 @@ def front(request):
     if Project.objects.count() > 0:
         
         if request.method == 'POST':
-            curr_year= Year.objects.get(pk=int(request.POST.get('year')))
+            curr_year= Year.objects.get(number=int(request.POST.get('year')))
         else:
             curr_year=year_objs[-1]
 
@@ -59,13 +59,10 @@ def front(request):
         # Iteration for all the years projects
         for p in curr_projs_objs:
             c={}
-            if 'servicio' in str(p.service_type.project_type).lower():
-                service_count+=1
-            else:
-                project_count+=1
                 
             factured_total+=p.factured_payment
             pending_total+=p.pending_payment
+            
             
             # Forming proj dict
             for f in fields_name:
@@ -82,11 +79,22 @@ def front(request):
                         val= 'X'
                     c[f]=val
             
+            # if for painting green
+            css_add=''
+            if 'terminado' in str(c['state']).lower():
+                print(c)
+                css_add=' class="fila-terminada" '
+            c['css_add']=css_add
+            
             # getting subprojects from the project
             # has to be at the end of the project for
             subprojects = list(p.subproject_set.all())
             if len(subprojects)>0:
                 for sp in range(len(subprojects)):
+                    if 'servicio' in str(p.service_type.project_type).lower():
+                        service_count+=1
+                    else:
+                        project_count+=1
                     curr_projs.append(c)
                     c={}
                     for f in fields_name:
@@ -101,6 +109,16 @@ def front(request):
                             c[f]=val
                         except Exception:
                             c[f]=''
+            else:
+                if 'servicio' in str(p.service_type.project_type).lower():
+                   service_count+=1
+                else:
+                    project_count+=1
+            
+            css_add=''
+            if 'terminado' in str(c['state']).lower():
+                css_add=' class="fila-terminada" '
+            c['css_add']=css_add
             curr_projs.append(c)
 
         plan_count=Project.objects.filter(year=curr_year, in_plan=True).count()
@@ -108,11 +126,12 @@ def front(request):
         dev_count=Project.objects.filter(year=curr_year, in_dev=True).count()
         quality_count=Project.objects.filter(year=curr_year, in_quality=True).count()
         finished_count=Project.objects.filter(year=curr_year, is_finished=True).count()
-        print(curr_projs)  
-        print(subprojects)
-        proj_keys=list(curr_projs[0].keys())     
+        # print(curr_projs)  
+        # print(subprojects)
+        # proj_keys=list(curr_projs[0].keys())     
         # print(proj_keys) 
         # print(fields_name)
+        # print(curr_projs)
         context={'curr_year':curr_year,
                 'curr_months':curr_months,'fields':fields, 
                 'curr_projs':curr_projs, 'years':years,
@@ -120,7 +139,7 @@ def front(request):
                 'year_accumulate':acc,
                 'percentage':percentage,
                 'deploy_links':deploy_links,
-                'proj_keys':proj_keys,
+                # 'proj_keys':proj_keys,
                 'service_count':service_count,
                 'project_count':project_count,
                 'factured_total':factured_total,
@@ -129,7 +148,8 @@ def front(request):
                 'contrat_count':contrat_count,
                 'dev_count':dev_count,
                 'quality_count':quality_count,
-                'finished_count':finished_count
+                'finished_count':finished_count,
+                'non_displayable_context':['css_add']
                 }
 
     return render(request,'proyects/front.html',context)

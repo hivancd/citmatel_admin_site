@@ -17,15 +17,20 @@ class ProjectType(models.Model):
     def __str__(self):
         return self.project_type
     
-    project_type=models.CharField(max_length=20,primary_key=True,verbose_name='Tipo de proyecto')
+    project_type=models.CharField(max_length=20,verbose_name='Tipo de proyecto')
     
 class Year(models.Model):
     
     def __str__(self):
         return str(self.number)
     
-    number = models.PositiveIntegerField(primary_key=True,verbose_name="Año")
-    plan= models.PositiveBigIntegerField(blank=True,default=1)
+    def save(self, *args,**kwargs):
+        super().save(*args,**kwargs)
+        Project.objects.filter(year=self).update(year=self)
+        Month.objects.filter(year=self).update(year=self)
+        
+    number = models.PositiveIntegerField(verbose_name="Año")
+    plan= models.BigIntegerField(blank=True,default=1)
     
 
 class Month(models.Model):
@@ -62,7 +67,7 @@ class Project(models.Model):
     is_finished =models.BooleanField(default=False,verbose_name="Terminado")
     state = models.CharField(max_length=20,choices=choices_json['state'],verbose_name="Estado Proyecto")
     annotations = models.TextField(max_length=250, blank=True,verbose_name="Observaciones")
-    year = models.ForeignKey(Year,on_delete=models.RESTRICT)
+    year = models.ForeignKey(Year,on_delete=models.PROTECT)
         
         
 class Subproject(models.Model):
@@ -72,7 +77,7 @@ class Subproject(models.Model):
     
     number= models.SmallAutoField(primary_key=True,verbose_name='No.')
     project = models.ForeignKey(Project,on_delete=models.CASCADE)
-    service_type = models.CharField(max_length=20,choices=choices_json['service_type'],verbose_name="Tipo")
+    service_type = models.ForeignKey(ProjectType,on_delete=models.RESTRICT, verbose_name='Tipo de Proyecto')
     name= models.CharField(max_length=20,verbose_name='Proyecto/Servicio')
     responsable = models.CharField(max_length=20,verbose_name="Responsable")
     in_plan = models.BooleanField(default=False,verbose_name="Plan")
@@ -92,6 +97,8 @@ class ProjectLink(models.Model):
     link= models.URLField()
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     
+    
+    
 class ProjectForm(forms.ModelForm):
     class Meta:
         model=Project
@@ -105,12 +112,8 @@ class ProjectForm(forms.ModelForm):
         in_dev=cleaned_data.get('in_dev')
         in_quality=cleaned_data.get('in_quality')
         is_finished=cleaned_data.get('is_finished')
+        state=cleaned_data.get('state')
         
-        print(in_plan)
-        print(in_contrat)
-        print(in_dev)
-        print(in_quality)
-        print(is_finished)
         
         if in_plan and (in_contrat or  in_dev or in_quality or is_finished):
                 raise forms.ValidationError(('LOGIC ERROR: Si el proyecto se encuentra en PLANIFICACION no puede estar en contratación, desarrollo, calidad o terminado.'),code='error1')
@@ -118,10 +121,13 @@ class ProjectForm(forms.ModelForm):
             raise forms.ValidationError(('LOGIC ERROR: No se definió ningún estado para el proyecto.'),code='error2')
         if is_finished and (in_contrat or in_dev or in_quality or in_plan):
             raise forms.ValidationError(('LOGIC ERROR: Si el proyecto se encuentra terminado no puede estar en contratación, desarrollo, calidad o en planificación.'),code='error3')
-
+        if ('terminado' in str(state).lower()) and not is_finished:
+            raise forms.ValidationError(('LOGIC ERROR: Si el proyecto se encuentra terminado el desarrollo debe estar terminado.'),code='error3')
+            
         return cleaned_data
     
 @admin.register(Project)
+
 class ProjectAdmin(admin.ModelAdmin):
     form= ProjectForm
     list_display=('number','name','code','service_type','responsable','factured_payment',
@@ -133,18 +139,42 @@ class ProjectAdmin(admin.ModelAdmin):
     
 admin.register(Project,ProjectAdmin)
     
-    # .SmallAutoField(primary_key=True,verbose_name='No.')
-    # name= models.CharField(max_length=20,verbose_name='Proyecto/Servicio')
-    # code= models.CharField(max_length=6,blank=True,null=True, unique=True, verbose_name='Código')
-    # service_type = models.ForeignKey(ProjectType,on_delete=models.RESTRICT)
-    # responsable = models.CharField(max_length=20,verbose_name="Responsable")
-    # factured_payment = models.DecimalField(max_digits=9, decimal_places=2,default=0.0,verbose_name="Facturado")
-    # pending_payment = models.DecimalField(max_digits=9, decimal_places=2,default=0.0,verbose_name="Pendiente")
-    # in_plan = models.BooleanField(default=False,verbose_name="Plan")
-    # in_contrat = models.BooleanField(default=False,verbose_name="Contratación")
-    # in_dev = models.BooleanField(default=False,verbose_name="En desarrollo")
-    # in_quality = models.BooleanField(default=False,verbose_name="Calidad")
-    # is_finished =models.BooleanField(default=False,verbose_name="Terminado")
-    # state = models.CharField(max_length=20,choices=choices_json['state'],verbose_name="Estado Proyecto")
-    # annotations = models.TextField(max_length=250, blank=True,verbose_name="Observaciones")
-    # year = models.ForeignKey(Year,on_delete=models.RESTRICT)
+class SubprojectForm(forms.ModelForm):
+    class Meta:
+        model=Subproject
+        fields= '__all__'
+        
+    def clean(self):
+        cleaned_data= super().clean()
+        
+        in_plan=cleaned_data.get('in_plan')
+        in_contrat=cleaned_data.get('in_contrat')
+        in_dev=cleaned_data.get('in_dev')
+        in_quality=cleaned_data.get('in_quality')
+        is_finished=cleaned_data.get('is_finished')
+        state=cleaned_data.get('state')
+    
+        
+        if in_plan and (in_contrat or  in_dev or in_quality or is_finished):
+                raise forms.ValidationError(('LOGIC ERROR: Si el proyecto se encuentra en PLANIFICACION no puede estar en contratación, desarrollo, calidad o terminado.'),code='error1')
+        if not(in_plan or in_contrat or in_dev or in_quality or is_finished):
+            raise forms.ValidationError(('LOGIC ERROR: No se definió ningún estado para el proyecto.'),code='error2')
+        if is_finished and (in_contrat or in_dev or in_quality or in_plan):
+            raise forms.ValidationError(('LOGIC ERROR: Si el proyecto se encuentra terminado no puede estar en contratación, desarrollo, calidad o en planificación.'),code='error3')
+        if ('terminado' in str(state).lower()) and not is_finished:
+            raise forms.ValidationError(('LOGIC ERROR: Si el proyecto se encuentra terminado el desarrollo debe estar terminado.'),code='error3')
+            
+        return cleaned_data
+
+@admin.register(Subproject)
+
+class SubprojectAdmin(admin.ModelAdmin):
+    form= SubprojectForm
+    
+    list_display=('number','name','service_type','responsable',
+                  'in_plan','in_contrat','in_dev','in_quality','is_finished',
+                  'state','annotations')
+    def links(self,proj):
+        return proj.projectlink_set.all()
+    
+admin.register(Subproject,SubprojectAdmin)
