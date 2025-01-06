@@ -32,10 +32,10 @@ def front(request):
     
     if Project.objects.count() > 0:
         
-        curr_year=year_objs[-1]
-
         if request.method == 'POST':
             curr_year= Year.objects.get(pk=int(request.POST.get('year')))
+        else:
+            curr_year=year_objs[-1]
 
         curr_projs_objs = list(Project.objects.filter(year=curr_year))
         curr_months = list(curr_year.month_set.order_by('month'))
@@ -55,6 +55,8 @@ def front(request):
         project_count=0
         factured_total=0
         pending_total=0
+        
+        # Iteration for all the years projects
         for p in curr_projs_objs:
             c={}
             if 'servicio' in str(p.service_type.project_type).lower():
@@ -65,16 +67,40 @@ def front(request):
             factured_total+=p.factured_payment
             pending_total+=p.pending_payment
             
+            # Forming proj dict
             for f in fields_name:
-                
                 if f == 'projectlink':
                     val=''
                     for l in p.projectlink_set.all():
                         val+=get_link_obj(l)
                     c[f]=val
                 else:
-                    c[f]=getattr(p,f)
-                
+                    val=getattr(p,f)
+                    if not val: 
+                        val=''
+                    elif val is True:
+                        val= 'X'
+                    c[f]=val
+            
+            # getting subprojects from the project
+            # has to be at the end of the project for
+            subprojects = list(p.subproject_set.all())
+            if len(subprojects)>0:
+                for sp in range(len(subprojects)):
+                    curr_projs.append(c)
+                    c={}
+                    for f in fields_name:
+                        try:
+                            val=getattr(subprojects[sp],f)
+                            if f=='number':
+                                val=str(getattr(p,f)) + '.'+str(sp+1)
+                            elif not val: 
+                                val=''
+                            elif val is True:
+                                val= 'X'
+                            c[f]=val
+                        except Exception:
+                            c[f]=''
             curr_projs.append(c)
 
         plan_count=Project.objects.filter(year=curr_year, in_plan=True).count()
@@ -82,17 +108,8 @@ def front(request):
         dev_count=Project.objects.filter(year=curr_year, in_dev=True).count()
         quality_count=Project.objects.filter(year=curr_year, in_quality=True).count()
         finished_count=Project.objects.filter(year=curr_year, is_finished=True).count()
-        #   <td colspan="3" style="text-align: center;">Proyectos: {{project_count}}</td>  <!-- Este valor incluye todo lo que no es servicio. En el caso de Macroproyectos, que tienen-->
-        #     <td colspan="2" style="text-align: center;">Servicios: {{service_count}}</td>  <!-- subproyectos, se cuentan los subproyectos-->
-        #     <td></td>														                            <!-- El total Facturado la suma de todo lo que está en la columna Servicio Facturado-->	
-        #     <td class="texto-pequeño">${{factured_total}}</td>                      <!-- Total facturado -->
-        #     <td class="texto-pequeño">${{pending_total}}</td>                       <!-- Total pendiente por facturar --> <!-- Es la suma de todo los que está por facturar, pero si aparece un valor en rojo, no se suma. -->
-        #     <td style="text-align: center;">{{plan_count}}</td>                          <!-- Total servicios en plan, se habló con cliente, no ha concretado cita inicial  --> 
-        #     <td style="text-align: center;">{{contrat_count}}</td>                          <!-- Total servicios en contratación (reuniones de requisitos, oferta, firma contrato) --> 
-        #     <td style="text-align: center;">{{dev_count}}</td>                          <!-- Total servicios en desarrollo --> 
-        #     <td style="text-align: center;">{{quality__count}}</td>                          <!-- Total servicios en calidad -->
-        #     <td style="text-align: center;">{{finished_count}}</td>
-        # print(curr_projs)  
+        print(curr_projs)  
+        print(subprojects)
         proj_keys=list(curr_projs[0].keys())     
         # print(proj_keys) 
         # print(fields_name)
